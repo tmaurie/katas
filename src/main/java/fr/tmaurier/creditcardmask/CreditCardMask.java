@@ -1,12 +1,11 @@
 package fr.tmaurier.creditcardmask;
 
+import java.util.stream.IntStream;
+
 public class CreditCardMask {
     public static String maskify(String str) {
-        if (str.length() <= 4) {
-            return str;
-        }
-
-        return str.substring(0, str.length() - 4).replaceAll(".", "#").concat(str.substring(str.length() - 4));
-
+        char[] chars = str.toCharArray();
+        IntStream.range(0, chars.length - 4).forEach(i -> chars[i] = '#');
+        return new String(chars);
     }
 }
